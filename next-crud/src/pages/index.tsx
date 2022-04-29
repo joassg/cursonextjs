@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
-import ColecaoCliente from "../backend/db/ColecaoCliente";
+
 import Botao from "../components/Botao";
 import Formulario from "../components/Formulario";
 import Layout from "../components/Layout";
 import Tabela from "../components/Tabela";
 import Cliente from "../core/Cliente";
-import ClienteRepositorio from "../core/ClienteRepositorio";
 import useClientes from "../hooks/useClientes";
 
 export default function Home() {
@@ -18,7 +16,8 @@ export default function Home() {
           excluirCliente,
           tabelaVisivel, 
           exibirTabela
-        } = useClientes()
+  } = useClientes()
+      
   
   return (
     <div className={`
@@ -44,7 +43,7 @@ export default function Home() {
             <Formulario 
               cliente={cliente}
               clienteMudou={salvarCliente}
-              cancelado={() => exibirTabela}
+              cancelado={exibirTabela}
             />
           )}
         </Layout>

@@ -1,5 +1,5 @@
 
-import firebase from "firebase/app";
+import firebase from "../config";
 import Cliente from "../../core/Cliente";
 import ClienteRepositorio from "../../core/ClienteRepositorio";
 
@@ -12,7 +12,7 @@ export default class ColecaoCliente implements ClienteRepositorio {
                                 idade: cliente.idade,
                         }
                 },
-                fromFirestore(snapshot: { data: (arg0: any) => any; id: string; }, options: any) {
+                fromFirestore(snapshot: firebase.firestore.QueryDocumentSnapshot, options: any) {
                         const dados = snapshot.data(options)
                         return new Cliente(dados.nome, dados.idade, snapshot.id)
                 }
@@ -39,7 +39,12 @@ export default class ColecaoCliente implements ClienteRepositorio {
                 return query.docs.map((doc: { data: () => any; }) => doc.data()) ?? []
         }
 
-        private colecao() {
-                return firebase.firestore().collection('clientes').withConverter(this.#conversor)
-        }
+       private colecao() {
+               return firebase
+                        .firestore()
+                        .collection('clientes')
+                        .withConverter(this.#conversor)
+       }
+
+ 
 }

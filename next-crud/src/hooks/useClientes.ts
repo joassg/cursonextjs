@@ -8,7 +8,7 @@ export default function useClientes() {
 
     const repo: ClienteRepositorio = new ColecaoCliente
 
-    const {tabelaVisivel, exibirTabela, exibirFormulario} = useTabelaOuForm()
+    const {tabelaVisivel, formularioVisivel, exibirTabela, exibirFormulario} = useTabelaOuForm()
 
     const [cliente, setCliente] = useState<Cliente>(Cliente.vazio())
     const [clientes, setClientes] = useState<Cliente[]>([])
